@@ -5,28 +5,26 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Lim Bing Sen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bingsen0806.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/bingsen0806)]
+[[portfolio](team/bingsen0806.md)]
 
-* Role: Project Advisor
+* Role: Developer, Project Lead
+* Responsibilities: Book commands
 
-### Jane Doe
+### Ang Yong Liang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yl-ang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yl-ang)]
+[[portfolio](team/yl-ang.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
