@@ -21,18 +21,18 @@ public class Patron {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Id id;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patron(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patron(Name name, Phone phone, Email email, Id id, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, id, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.id = id;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Patron {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Id getId() {
+        return id;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Patron {
         return otherPatron.getName().equals(getName())
                 && otherPatron.getPhone().equals(getPhone())
                 && otherPatron.getEmail().equals(getEmail())
-                && otherPatron.getAddress().equals(getAddress())
+                && otherPatron.getId().equals(getId())
                 && otherPatron.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, id, tags);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Patron {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Id: ")
+                .append(getId());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

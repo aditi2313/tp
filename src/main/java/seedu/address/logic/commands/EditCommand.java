@@ -19,7 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patron;
@@ -33,22 +33,22 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patron identified "
+            + "by the index number used in the displayed patron list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ADDRESS + "ID] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Patron: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This patron already exists in the address book.";
 
     private final Index index;
     private final EditPatronDescriptor editPatronDescriptor;
@@ -96,10 +96,10 @@ public class EditCommand extends Command {
         Name updatedName = editPatronDescriptor.getName().orElse(patronToEdit.getName());
         Phone updatedPhone = editPatronDescriptor.getPhone().orElse(patronToEdit.getPhone());
         Email updatedEmail = editPatronDescriptor.getEmail().orElse(patronToEdit.getEmail());
-        Address updatedAddress = editPatronDescriptor.getAddress().orElse(patronToEdit.getAddress());
+        Id updatedId = editPatronDescriptor.getId().orElse(patronToEdit.getId());
         Set<Tag> updatedTags = editPatronDescriptor.getTags().orElse(patronToEdit.getTags());
 
-        return new Patron(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Patron(updatedName, updatedPhone, updatedEmail, updatedId, updatedTags);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Id id;
         private Set<Tag> tags;
 
         public EditPatronDescriptor() {}
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setId(toCopy.id);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, id, tags);
         }
 
         public void setName(Name name) {
@@ -176,12 +176,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setId(Id address) {
+            this.id = id;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Id> getId() {
+            return Optional.ofNullable(id);
         }
 
         /**
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getId().equals(e.getId())
                     && getTags().equals(e.getTags());
         }
     }
