@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Patron;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatronBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,20 +26,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Patron validPerson = new PersonBuilder().build();
+    public void execute_newPatron_success() {
+        Patron validPatron = new PatronBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addPatron(validPatron);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validPatron), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validPatron), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Patron personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicatePatron_throwsCommandException() {
+        Patron patronInList = model.getAddressBook().getPatronList().get(0);
+        assertCommandFailure(new AddCommand(patronInList), model, AddCommand.MESSAGE_DUPLICATE_PATRON);
     }
 
 }

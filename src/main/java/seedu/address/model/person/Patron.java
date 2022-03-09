@@ -64,13 +64,13 @@ public class Patron {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Patron otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Patron otherPatron) {
+        if (otherPatron == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPatron != null
+                && otherPatron.getName().equals(getName());
     }
 
     /**
@@ -87,12 +87,12 @@ public class Patron {
             return false;
         }
 
-        Patron otherPerson = (Patron) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        Patron otherPatron = (Patron) other;
+        return otherPatron.getName().equals(getName())
+                && otherPatron.getPhone().equals(getPhone())
+                && otherPatron.getEmail().equals(getEmail())
+                && otherPatron.getAddress().equals(getAddress())
+                && otherPatron.getTags().equals(getTags());
     }
 
     @Override

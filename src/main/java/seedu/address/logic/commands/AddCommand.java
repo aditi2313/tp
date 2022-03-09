@@ -34,27 +34,27 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PATRON = "This person already exists in the address book";
 
     private final Patron toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Patron person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Patron patron) {
+        requireNonNull(patron);
+        toAdd = patron;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasPatron(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PATRON);
         }
 
-        model.addPerson(toAdd);
+        model.addPatron(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

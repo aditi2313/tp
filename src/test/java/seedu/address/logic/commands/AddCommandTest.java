@@ -21,39 +21,39 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Patron;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatronBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullPatron_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Patron validPerson = new PersonBuilder().build();
+    public void execute_patronAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPatronAdded modelStub = new ModelStubAcceptingPatronAdded();
+        Patron validPerson = new PatronBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validPerson), modelStub.patronsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Patron validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicatePatron_throwsCommandException() {
+        Patron validPatron = new PatronBuilder().build();
+        AddCommand addCommand = new AddCommand(validPatron);
+        ModelStub modelStub = new ModelStubWithPerson(validPatron);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PATRON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Patron alice = new PersonBuilder().withName("Alice").build();
-        Patron bob = new PersonBuilder().withName("Bob").build();
+        Patron alice = new PatronBuilder().withName("Alice").build();
+        Patron bob = new PatronBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Patron person) {
+        public void addPatron(Patron patron) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Patron person) {
+        public boolean hasPatron(Patron patron) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Patron target) {
+        public void deletePatron(Patron target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Patron target, Patron editedPerson) {
+        public void setPatron(Patron target, Patron editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Patron> getFilteredPersonList() {
+        public ObservableList<Patron> getFilteredPatronList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Patron> predicate) {
+        public void updateFilteredPatronList(Predicate<Patron> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -161,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Patron person) {
+        public boolean hasPatron(Patron person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
@@ -170,19 +170,19 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Patron> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPatronAdded extends ModelStub {
+        final ArrayList<Patron> patronsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Patron person) {
+        public boolean hasPatron(Patron person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return patronsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public void addPerson(Patron person) {
+        public void addPatron(Patron person) {
             requireNonNull(person);
-            personsAdded.add(person);
+            patronsAdded.add(person);
         }
 
         @Override

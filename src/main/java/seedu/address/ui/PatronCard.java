@@ -14,7 +14,7 @@ import seedu.address.model.person.Patron;
  */
 public class PatronCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "PatronListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

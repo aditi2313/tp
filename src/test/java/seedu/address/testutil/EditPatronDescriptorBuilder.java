@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditPatronDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -15,23 +15,23 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditPatronDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditPatronDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+    public EditPatronDescriptorBuilder() {
+        descriptor = new EditPatronDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPatronDescriptorBuilder(EditPatronDescriptor descriptor) {
+        this.descriptor = new EditPatronDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Patron person) {
-        descriptor = new EditPersonDescriptor();
+    public EditPatronDescriptorBuilder(Patron person) {
+        descriptor = new EditPatronDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
@@ -42,7 +42,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditPatronDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -50,7 +50,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditPatronDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
@@ -58,7 +58,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditPatronDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
@@ -66,7 +66,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
+    public EditPatronDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
         return this;
     }
@@ -75,13 +75,13 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditPatronDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditPatronDescriptor build() {
         return descriptor;
     }
 }

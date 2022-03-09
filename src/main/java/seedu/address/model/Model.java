@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Patron person);
+    boolean hasPatron(Patron patron);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Patron target);
+    void deletePatron(Patron target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Patron person);
+    void addPatron(Patron patron);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Patron target, Patron editedPerson);
+    void setPatron(Patron target, Patron editedPatron);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Patron> getFilteredPersonList();
+    ObservableList<Patron> getFilteredPatronList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Patron> predicate);
+    void updateFilteredPatronList(Predicate<Patron> predicate);
 }

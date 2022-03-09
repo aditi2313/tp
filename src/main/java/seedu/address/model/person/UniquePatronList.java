@@ -22,7 +22,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * @see Patron#isSamePerson(Patron)
  */
-public class UniquePersonList implements Iterable<Patron> {
+public class UniquePatronList implements Iterable<Patron> {
 
     private final ObservableList<Patron> internalList = FXCollections.observableArrayList();
     private final ObservableList<Patron> internalUnmodifiableList =
@@ -53,7 +53,7 @@ public class UniquePersonList implements Iterable<Patron> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Patron target, Patron editedPerson) {
+    public void setPatron(Patron target, Patron editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Patron> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPatrons(UniquePatronList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniquePersonList implements Iterable<Patron> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Patron> persons) {
+    public void setPatrons(List<Patron> persons) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+        if (!patronsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
 
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Patron> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniquePatronList // instanceof handles nulls
+                        && internalList.equals(((UniquePatronList) other).internalList));
     }
 
     @Override
@@ -124,7 +124,7 @@ public class UniquePersonList implements Iterable<Patron> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Patron> persons) {
+    private boolean patronsAreUnique(List<Patron> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
                 if (persons.get(i).isSamePerson(persons.get(j))) {

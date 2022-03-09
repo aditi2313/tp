@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Patron> filteredPersons;
+    private final FilteredList<Patron> filteredPatrons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPatrons = new FilteredList<>(this.addressBook.getPatronList());
     }
 
     public ModelManager() {
@@ -88,27 +88,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Patron person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPatron(Patron patron) {
+        requireNonNull(patron);
+        return addressBook.hasPatron(patron);
     }
 
     @Override
-    public void deletePerson(Patron target) {
-        addressBook.removePerson(target);
+    public void deletePatron(Patron target) {
+        addressBook.removePatron(target);
     }
 
     @Override
-    public void addPerson(Patron person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPatron(Patron patron) {
+        addressBook.addPatron(patron);
+        updateFilteredPatronList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Patron target, Patron editedPerson) {
+    public void setPatron(Patron target, Patron editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setPatron(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,14 +118,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Patron> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Patron> getFilteredPatronList() {
+        return filteredPatrons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Patron> predicate) {
+    public void updateFilteredPatronList(Predicate<Patron> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPatrons.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPatrons.equals(other.filteredPatrons);
     }
 
 }
