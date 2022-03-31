@@ -176,7 +176,7 @@ Examples:
 
 Finds all patrons with names matching the given keywords in LibTask's patron list.
 
-Format: `patron find n/KEYWORD [n/KEYWORD]…​`
+Format: `patron find KEYWORD [KEYWORD]…​`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. results from the keyword `Hans Bo` will match results of the keyword `Bo Hans`
@@ -187,7 +187,7 @@ Format: `patron find n/KEYWORD [n/KEYWORD]…​`
 
 Example:
 
-`patron find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
+`patron find alex david` returns `Alex Yeoh`, `David Li`<br>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
