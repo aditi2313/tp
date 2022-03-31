@@ -100,6 +100,8 @@ This section describes the features supported by LibTask and how to use them.
 
 ## 3.1. General Features
 
+This section describes features users can use to navigate through LibTask.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### 3.1.1. Viewing help : `help`
@@ -136,6 +138,8 @@ Format: `u`
 LibTask's data is saved in the hard disk automatically after any command that changes it. There is no need to save manually.
 
 ## 3.2. Patron Features
+
+This section describes features users can use to interact with LibTask's patron list.
 
 --------------------------------------------------------------------------------------------------------------------
 ### 3.2.1. Adding a patron: `patron add`
@@ -212,6 +216,8 @@ Lists all patrons in LibTask's patron list with overdue books.
 Format: `patron overdue`
 
 ## 3.3. Book Features
+
+This section describes features users can use to interact with LibTask's book list.
 
 --------------------------------------------------------------------------------------------------------------------
 
